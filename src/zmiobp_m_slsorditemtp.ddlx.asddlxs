@@ -1,0 +1,60 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: {
+  headerInfo: {
+    typeName: 'Item',
+    typeNamePlural: 'Items',
+    title: { 
+      type: #STANDARD, 
+      value: 'SalesOrderItem' 
+    }
+  }
+}
+annotate view ZMIOBP_C_SlsOrdItemTP with
+{
+  @UI.facet: [ 
+    {
+      id: 'GeneralInfoFacetID',
+      purpose: #STANDARD,
+      position: 10,
+      importance: #HIGH,
+      label: 'General Information',
+      type: #COLLECTION
+    },
+    {
+      parentId: 'GeneralInfoFacetID',
+      purpose: #STANDARD,
+      position: 10,
+      importance: #HIGH,
+      label: 'Basic Data',
+      type: #IDENTIFICATION_REFERENCE,
+      targetQualifier: 'BasicData'
+    }
+  ]
+  @UI: {
+    lineItem: [ { position: 10 } ] 
+  }
+  SalesOrderItem;
+  @UI: {
+    lineItem: [ { position: 20 } ] 
+  }
+  Product;
+  @UI: {
+    lineItem: [ { position: 30 } ] 
+  }
+  CurrencyCode;
+  @UI: {
+    lineItem: [ { position: 40 } ] 
+  }
+  GrossAmount;
+  @UI: {
+    lineItem: [ { position: 50 } ] 
+  }
+  Quantity;
+  
+  @UI: {
+    lineItem: [ { position: 21, value: '_SalesOrdItmCurrency.CurrencyCode', label: 'Allowed Currencies' } ],
+    identification: [{ position: 10, value: '_SalesOrdItmCurrency.CurrencyCode', label: 'Allowed Currencies' }] 
+  }
+  _SalesOrdItmCurrency;
+}
